@@ -79,7 +79,7 @@ Where:
 - `sumAllSpread` is the total sum of all spreads.
 - `sumAllGreen` is the sum of all green candle spreads.
 - `sumAllRed` is the sum of all red candle spreads.
-- `cardCount` is the count of cards.
+- `cardCount` is the count of anomalies.
 - `topAllRed` is the top red spread value.
 - `topAllGreen` is the top green spread value.
 
