@@ -71,15 +71,17 @@ This report describes a custom trading strategy scanner designed for cryptocurre
 
 The scoring system is based on the following mathematical formula:
 
-\[ \text{Score} = \left( \text{sumAllSpread} + \frac{|\text{sumAllGreen} - \text{sumAllRed}|}{5} + \text{cardCount} \times 5 + \text{topAllRed} + \text{topAllGreen} \right) \]
+$$
+\text{Score} = \text{sumAllSpread} + \frac{|\text{sumAllGreen} - \text{sumAllRed}|}{5} + \text{cardCount} \times 5 + \text{topAllRed} + \text{topAllGreen}
+$$
 
 Where:
-- \(\text{sumAllSpread}\) is the total sum of all spreads.
-- \(\text{sumAllGreen}\) is the sum of all green candle spreads.
-- \(\text{sumAllRed}\) is the sum of all red candle spreads.
-- \(\text{cardCount}\) is the count of cards.
-- \(\text{topAllRed}\) is the top red spread value.
-- \(\text{topAllGreen}\) is the top green spread value.
+- `sumAllSpread` is the total sum of all spreads.
+- `sumAllGreen` is the sum of all green candle spreads.
+- `sumAllRed` is the sum of all red candle spreads.
+- `cardCount` is the count of cards.
+- `topAllRed` is the top red spread value.
+- `topAllGreen` is the top green spread value.
 
 Coins with a higher score indicate a higher probability of being profitable for scalping, especially when evaluated by experienced traders.
 
@@ -88,6 +90,6 @@ Users can sort all coins based on any of the parameters listed above by clicking
 
 ## Conclusion
 
-This custom trading strategy scanner is designed to offer a comprehensive tool for identifying trading opportunities in the crypto market. With its flexible and adaptable approach, it can provide valuable insights and assist traders in making informed decisions.
+This custom trading strategy scanner is designed to offer a comprehensive tool for identifying trading opportunities in the crypto market. With its flexible and adaptive approach, it can provide valuable insights and assist traders in making informed decisions.
 
 For any additional information or to try out the demo, visit the provided [demo link](https://coincove.blogspot.com/p/static.html).
