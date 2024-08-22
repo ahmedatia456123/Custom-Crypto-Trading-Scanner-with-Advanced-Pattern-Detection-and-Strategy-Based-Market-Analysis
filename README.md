@@ -1,0 +1,1 @@
+# Custom-Crypto-Trading-Scanner-with-Advanced-Pattern-Detection-and-Strategy-Based-Market-Analysis
