@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binance Futures Data</title>
+  <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .header{
+    background: #e9e9e9;
+    border-bottom: 5px solid black;
+    padding: 1em;
+    font-size: 1.1em;
+    width: 100%;
+  }
+  .coin {
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 1em 1em 0;
+    padding: 1em;
+    background: #e9e9e9;
+}
+
+  .name {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.titlecandle {
+  font-size: 1.3em;
+  width: 100%;
+  text-align: center;
+  background: #d7d7d7;
+  margin: 1em 0 0;
+  padding: 0.3em;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #5e5e5e;
+}
+.spinner {
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-inner {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border: 0.3rem solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  animation: spinner-rotate 1s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn {
+  cursor: pointer;
+  margin: 5px;
+  background: #2a2727;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  gap: 1em;
+  color: white;
+}
+div#percFilter {
+  display: flex;
+  flex-flow: wrap;
+}
+div#main {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+}
+.scannerBody {
+  display: grid;
+}
+#reload-button {
+  background-color: #2a2727;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  color: ghostwhite;
+}
+
+
+
+.bi-arrow-clockwise {
+  vertical-align: middle;
+}
+.coinBody {
+  font-size: 0.8em;
+}
+
+
+#back-to-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+#back-to-top-btn:hover {
+  background-color: #555;
+}
+#tvchart{display: none;}
+.showChart {
+    display: block !important;
+
+}
+.showChart {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.showChart iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.chartbutton {
+  display: flex;
+  color: white;
+  justify-content: center;
+}
+.displayChart {
+  cursor: pointer;
+  margin: 5px;
+  background: #2a2727;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+.coinFooter {
+  background: #f2f2f2;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+button.pagination-button {
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div#pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 3em;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.card {
+  background: #333333;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 5px;
+  color: white;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.numberOfCoins {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.reload-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.reload-button:hover {
+  background-color: #ddd;
+}
+
+.scannerBody {
+  width: 100%;
+  max-width: none;
+  flex-basis: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .numberOfCoins {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .reload-button {
+    margin-bottom: 10px;
+  }
+
+  .scannerBody {
+    flex-direction: column;
+  }
+}
+  </style>
+  <link rel="stylesheet" href="test2.css">
+</head>
+<body>
+  <div id="main">
+    <div class="header">
+      <div class="topBar">
+        <div class="numberOfCoins"><span>Scanned Coin:</span><span class="numberOfCoinsValue"></span></div>
+        <div onclick="reloadPage()" id="reload-button">
+          R
+        </div>
+      </div>
+    <div id="percFilter">
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'sumAllGreen')"> Green</div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'sumAllRed')"> Red</div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'sumAllSpread')">Sum All Spread</div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'sumAllAmp')">Sum All Amp</div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'cardCount')">Cards<div class='cardCounter'></div></div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'favCoin')">Fav Coins<div class='FaveCoinCounter'></div></div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'topAllRed')">Top All Red<div class='topAllRedCounter'></div></div>
+        <div class='btn' id='percOrder3' onclick="displayCandleData(5,'topAllGreen')">Top All Green<div class='topAllGreenCounter'></div></div>
+      </div>
+
+    </div>
+    <div id="spinner" class="spinner">
+      <div class="spinner-inner"></div>
+    </div>
+    <div class="scannerBody"></div>
+    <div id="pagination"></div>
+    <div class="footer"></div>
+  </div>
+  <button id="back-to-top-btn">Back to Top</button>
+  <script>
+let globalArray = []
+let original = []
+let favList = ['LEVERUSDT','PHBUSDT','AMBUSDT','1000FLOKIUSDT','IDEXUSDT','KEYUSDT','DODOBUSD','TLMUSDT']
+let spreadSum = 0
+let ampSum = 0
+let green = 0
+let red = 0
+let numOfColum = 5
+let options = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 };
+let symbolInfo = {}
+const fetchFutureSymbols = async () => {
+  const response = await fetch('https://fapi.binance.com/fapi/v1/exchangeInfo');
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  console.log(data)
+  const symbols = data.symbols.filter(symbol => symbol.contractType === 'PERPETUAL');
+   data.symbols.map(symbol => symbolInfo[symbol.symbol]={
+    maxMarketOrder:Number(symbol.filters[2].maxQty)
+  });
+  // Keep both USDT and BUSD pairs, remove BUSD pair if the same coin has both USDT and BUSD pairs
+  const symbolSet = new Set();
+  const filteredSymbols = [];
+  for (const symbol of symbols) {
+    
+    if (
+      symbolSet.has(symbol.quoteAsset) ||
+      (symbolSet.has(`${symbol.quoteAsset}USDT`) && symbol.contractType === 'PERPETUAL') ||
+      (symbolSet.has(`${symbol.quoteAsset}BUSD`) && symbol.contractType === 'PERPETUAL')
+    ) {
+      if (symbolSet.has(`${symbol.quoteAsset}BUSD`)) {
+        // Remove the BUSD pair if the same coin has both USDT and BUSD pairs
+        const index = filteredSymbols.indexOf(`${symbol.quoteAsset}BUSD`);
+        if (index > -1) {
+          filteredSymbols.splice(index, 1);
+        }
+      }
+      continue;
+    }
+
+    filteredSymbols.push(symbol.symbol);
+    symbolSet.add(symbol.baseAsset);
+    if (symbol.quoteAsset === 'BUSD') {
+      symbolSet.add(`${symbol.baseAsset}BUSD`);
+    } else if (symbol.quoteAsset === 'USDT') {
+      symbolSet.add(`${symbol.baseAsset}USDT`);
+    }
+  }
+  document.getElementsByClassName('numberOfCoinsValue')[0].innerHTML=filteredSymbols.length
+  return filteredSymbols;
+};
+
+const fetchPastCandles = async () => {
+  const symbols = await fetchFutureSymbols();
+  const interval = '1m';
+  const limit = 300;
+  const startTime = Date.now() - 500 * 60000;
+  const endTime = Date.now();
+  const candles = {};
+
+  await Promise.all(symbols.map(async (symbol) => {
+    const response = await fetch(`https://fapi.binance.com/fapi/v1/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    candles[symbol] = data.map(candle => ({
+      openTime: candle[0],
+      openPrice: parseFloat(candle[1]),
+      highPrice: parseFloat(candle[2]),
+      lowPrice: parseFloat(candle[3]),
+      closePrice: parseFloat(candle[4]),
+      volume: parseFloat(candle[5])
+    })).reverse();
+  }));
+  return candles;
+};
+const createCandleList = async () => {
+  const candles = await fetchPastCandles();
+  const candleList = [];
+
+  for (const symbol in candles) {
+    const candleData = candles[symbol];
+    const hourlyCandles = [];
+    const halfHourlyCandles = [];
+    const fiveMinuteCandles = [];
+    const last60Candle = [];
+
+    const spreadCandlesAbs = candleData.map(candle => Math.abs(candle.closePrice - candle.openPrice) / candle.openPrice * 100);
+    const volumeCandles = candleData.map(candle => Math.abs(candle.volume));
+    const last20SpreadSum = spreadCandlesAbs.slice(-20).reduce((acc, val) => acc + val, 0);
+    const last300SpreadSum = spreadCandlesAbs.slice(-300).reduce((acc, val) => acc + val, 0);
+    const last300VolumeSum = volumeCandles.slice(-300).reduce((acc, val) => acc + val, 0);
+
+    for (let i = 0; i < candleData.length; i++) {
+      const candle = candleData[i];
+      const spread = candle.closePrice - candle.openPrice;
+      const amplitude = candle.highPrice - candle.lowPrice;
+      const spreadToAmpRatio = spread!=amplitude ? Number((Math.abs(spread) / Math.abs( amplitude))).toFixed(2): 0;
+      const minute = new Date(candle.openTime).getMinutes();
+      const second = new Date(candle.openTime).getSeconds();
+      if(i<60){
+        last60Candle.push({
+          ...candle,
+          spreadPercentage: Number((spread / candle.openPrice * 100).toFixed(2)),
+          amplitudePercentage: Number((amplitude / candle.lowPrice * 100).toFixed(2)),
+          spreadToAmpRatio
+        })
+      }
+      if (minute === 0 && second === 0) {
+        hourlyCandles.push({
+          ...candle,
+          spreadPercentage: Number((spread / candle.openPrice * 100).toFixed(2)),
+          amplitudePercentage: Number((amplitude / candle.openPrice * 100).toFixed(2)),
+          spreadToAmpRatio
+        });
+      }
+      if ((minute === 0 || minute === 30) && second === 0) {
+        halfHourlyCandles.push({
+          ...candle,
+          spreadPercentage: Number((spread / candle.openPrice * 100).toFixed(2)),
+          amplitudePercentage: Number((amplitude / candle.openPrice * 100).toFixed(2)),
+          spreadToAmpRatio
+        });
+      }
+      if (minute % 5 === 0 && second === 0) {
+        fiveMinuteCandles.push({
+          ...candle,
+          spreadPercentage: Number((spread / candle.openPrice * 100).toFixed(2)),
+          amplitudePercentage: Number((amplitude / candle.openPrice * 100).toFixed(2)),
+          spreadToAmpRatio
+        });
+      }
+    }
+
+    const candleListItem = {
+      symbol,
+      hourlyCandles: hourlyCandles.map(candle => ({...candle })),
+      halfHourlyCandles: halfHourlyCandles.map(candle => ({...candle})),
+      fiveMinuteCandles: fiveMinuteCandles.map(candle => ({...candle})),
+      last60Candle: last60Candle.map(candle => ({...candle})),
+      last20SpreadSum: Number(last20SpreadSum.toFixed(2)),
+      last300SpreadSum: Number(last300SpreadSum.toFixed(2)),
+      last300VolumeSum: Number(last300VolumeSum.toFixed(2)),
+      maxMarketOrder:symbolInfo[symbol].maxMarketOrder,
+      threeConsecutiveGreen:false,
+      threeConsecutiveRed:false,
+      favCoin:0,
+    };
+    candleList.push(candleListItem);
+  }
+  return candleList;
+};
+//createCandleList()
+const displayCandleData = async (numberOfcolumn,lv1,lv2='',lv3='') => {
+  
+  // Show the spinner
+  const spinnerEl = document.getElementById('spinner');
+  spinnerEl.style.display = 'flex';
+  let sortedArray = []
+  // Fetch and render the data
+  if(globalArray.length==0){
+
+    globalArray = await createCandleList();
+    await proccessingGlobalArray(numberOfcolumn)
+     sortedArray = await sortGlobalArray(lv1,lv2,lv3)
+
+  }else{
+    
+    //await proccessingGlobalArray(numberOfcolumn)
+     sortedArray =  sortGlobalArray(lv1,lv2,lv3)
+    }
+    console.log(sortedArray)
+    console.log(globalArray)
+
+  let currentPage = 1;
+  const rowsPerPage = 20;
+  const totalRows = sortedArray.length;
+  const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+  const renderTable = (startIndex, endIndex) => {
+    document.getElementsByClassName('scannerBody')[0].innerHTML = ''
+    for (let i = startIndex; i < endIndex; i++) {
+      const e = sortedArray[i];
+      // Render the candle data for each symbol
+      spreadSum = 0
+      ampSum = 0
+      red = 0
+      green = 0
+
+      let coinName = e.symbol
+      
+      document.getElementsByClassName('scannerBody')[0].innerHTML += `
+      <div class='coin ${coinName}'>
+        <div class='coinHeader'>
+          <div class='name'>
+            ${coinName}
+          </div>
+          <div onclick="displayCandleData(5,'score')" class='score'>Score :
+          ${e.score}
+          </div>
+          <div class="maxMarketOrder">Max market order = ${(e.last60Candle[0].closePrice*e.maxMarketOrder).toLocaleString('en-US', options)}
+          <div class='cards'>
+          ${e._3PercentAmp > 0 ? `<div class="card _3PercentAmp">Amp = ${e._3PercentAmp} </div>`:''}
+          ${e._150XAvgVolume ? `<div class="card _3PercentAmp">Volume > Avg Volume x 150 </div>`:''}
+          ${e.sumSpreadofLast10Candle>3 ? `<div class="card volatile"> High volatility </div>`:''}
+          ${e.threeConsecutiveGreen ? `<div class="card threeConsecutiveGreen"> Three green  </div>`:''}
+          ${e.threeConsecutiveRed ? `<div class="card threeConsecutiveRed"> Three red </div>`:''}
+          ${e.dojiIn15Min ? `<div class="card dojiIn15Min"> Doji </div>`:''}
+        </div>
+        </div>
+        <div class='coinBody'>
+          <div class='HourlyCandle'>
+            <div class='titlecandle'>1H Candle</div>
+            <table>
+              <thead>
+                <tr>
+                  ${createTables(e.hourlyCandles, numberOfcolumn, coinName, 60,'hourlyCandles',e.countGreen60,e.countRed60,e.tailSum60)}
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class='HalfHourCandle'>
+            <div class='titlecandle'>30M Candle</div>
+            <table>
+              <thead>
+                <tr>
+                  ${createTables(e.halfHourlyCandles, numberOfcolumn, coinName, 30,'halfHourlyCandles',e.countGreen30,e.countRed30,e.tailSum30)}
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class='fiveMinuteCandle'>
+            <div class='titlecandle'>5M Candle</div>
+            <table>
+              <thead>
+                <tr>
+                  ${createTables(e.fiveMinuteCandles, numberOfcolumn, coinName, 5,'fiveMinuteCandles',e.countGreen5,e.countRed5,e.tailSum5)}
+                </tr>
+              </thead>
+              <table>
+                <tr onclick="displayCandleData(5,'last20SpreadSum')">
+                  <th>last20SpreadSum:</th>
+                  <td class='last20SpreadSum'>${e.last20SpreadSum}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'last300SpreadSum')">
+                  <th>last300SpreadSum:</th>
+                  <td class='last300SpreadSum'>${e.last300SpreadSum}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'fourHourSpread')">
+                  <th>4 Hour Spread:</th>
+                  <td class='fourHourSpread'>${e.fourHourSpread}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'oneHourSpread')">
+                  <th>1 Hour Spread:</th>
+                  <td class='oneHourSpread'>${e.oneHourSpread}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'fiveMinuteSpread')">
+                  <th>5 Minute Spread</th>
+                  <td class='fiveMinuteSpread'>${e.fiveMinuteSpread}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'top5MinRed')">
+                  <th>top5MinRed</th>
+                  <td class='fiveMinuteSpread'>${e.top5MinRed}</td>
+                </tr>
+                <tr onclick="displayCandleData(5,'top5MinGreen')">
+                  <th>top5MinGreen</th>
+                  <td class='fiveMinuteSpread'>${e.top5MinGreen}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class='coinFooter'>
+        <div class="chart">
+        <div class='chartbutton'>
+        <div id='${coinName}Button0' class="displayChart" onclick="displayChart('${coinName}',0)">Show H Chart</div>
+        <div id='${coinName}Button30' class="displayChart" onclick="displayChart('${coinName}',30)">Show 30M Chart</div>
+        <div id='${coinName}Button100' class="displayChart" onclick="displayChart('${coinName}',100)">Show Full Chart</div>
+        <div id='${coinName}coinAnalyz' class="displayChart" onclick="coinAnalyz('${coinName}','1m','line','120')">Coin analyiz</div>
+        </div>
+        </div>
+        <div class='displayChart0' style="display: none;" id='tvchart${coinName}'></div>
+        </div>
+      </div>
+      `;
+    }
+  };
+
+  const renderPagination = () => {
+    // Render pagination buttons
+    const paginationEl = document.getElementById('pagination');
+
+    let buttons = '';
+    for (let i = 1; i <= totalPages; i++) {
+      buttons += `<button class="pagination-button" data-page="${i}">${i}</button>`;
+    }
+    paginationEl.innerHTML = buttons;
+
+    // Add click event listener to each button
+    const paginationButtons = document.querySelectorAll('.pagination-button');
+    paginationButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        currentPage = parseInt(button.dataset.page);
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = currentPage * rowsPerPage;
+        document.getElementsByClassName('scannerBody')[0].innerHTML = '';
+        renderTable(startIndex, endIndex);
+      });
+    });
+    scrollToTop()
+  };
+
+  renderTable(0, rowsPerPage);
+  renderPagination();
+
+  // Hide the loading spinner once the data is ready to be displayed
+  spinnerEl.style.display = 'none';
+};
+displayCandleData(5,'fiveMinuteCandles',0,'spreadPercentage')
+
+const createTables = (arr,numberOfcolumn,coinName,timeFrame,key,green,red) => {
+  spreadSum = 0
+  ampSum = 0
+  return `
+    ${arr.map((e,i)=>{
+      if(i<numberOfcolumn){
+        return `<th time='${e.openTime}'>${new Date(e.openTime).toLocaleString('en-US', { timeZone: 'Africa/Cairo', hour: 'numeric', minute: 'numeric', hour12: true })}</th>`
+      }
+    }).filter(html => html !== undefined).join('')}
+    </tr>
+    </thead>
+    <tr>
+      ${arr.map((e,i)=>{
+        if(i<numberOfcolumn){
+          spreadSum=spreadSum+Math.abs(e.spreadPercentage)
+          ampSum=ampSum+Math.abs(e.amplitudePercentage)
+          
+          return `
+          <th>
+          <table style="width:100%">
+          <tr>
+          <th>Color:</th>
+          <td class='color' style='background:${e.spreadPercentage>0 ? '#00800075': '#ff000087'}'></td>
+          </tr>
+          <tr onclick="displayCandleData(5,'${key}',${i},'spreadPercentage')">
+          <th>Spread:</th>
+          <td  class='spread${e.openTime}'>${Math.abs(e.spreadPercentage)}</td>
+          </tr>
+          <tr>
+          <th onclick="displayCandleData(5,'${key}',${i},'amplitudePercentage')">AMP:</th>
+          <td class='amp${e.openTime}'>${e.amplitudePercentage}</td>
+          </tr>
+          </table>
+          </th>
+          `
+        }
+      }).filter(html => html !== undefined).join('')}
+      <tr>
+      <tr onclick="displayCandleData(5,'${key}SpreadSum')">
+          <th>SpreadSum:</th>
+          <td class='spreadSum${timeFrame}'>${spreadSum.toFixed(3)}</td>
+          </tr>
+          <tr onclick="displayCandleData(5,'${key}AmpSum')">
+          <th>AMPSum:</th>
+          <td class='amp${timeFrame}'>${ampSum.toFixed(3)}</td>
+          </tr>
+          <tr>
+          <th onclick="displayCandleData(5,'countGreen${timeFrame}')">Green Score:</th>
+          <td class='GreenScore${timeFrame}'>${green}</td>
+          </tr>
+          <tr>
+          <th onclick="displayCandleData(5,'countRed${timeFrame}')">Red Score:</th>
+          <td class='RedScore${timeFrame}'>${red}</td>
+          </tr>
+      <tr>
+      `
+    
+}
+
+const getIndex = (lv1,lv2='',lv3='')=>{
+  let arrayIndex = []
+  
+  for(var x=0;x<globalArray.length;x++){
+    if(lv2===''){
+      arrayIndex[x] = {
+        value: Math.abs(globalArray[x][lv1]),
+        index: x
+      }
+    }else{
+      arrayIndex[x] = {
+        value: Math.abs(globalArray[x][lv1][lv2][lv3]),
+        index: x
+      }
+    }
+  }
+  return arrayIndex
+}
+const  sortObjectsDescending= (arr) =>{
+ 
+  arr.sort((a, b) => b.value - a.value);
+  return arr;
+}
+
+const sortGlobalArray = (lv1,lv2,lv3) => {
+  let tempArr = sortObjectsDescending(getIndex(lv1,lv2,lv3))
+  let sortedArr = tempArr.map(e=>{
+    return globalArray[e.index]
+  })
+  return sortedArr
+}
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+const backToTopButton = document.querySelector("#back-to-top-btn");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 0) {
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+});
+
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
+const proccessingGlobalArray = async (numberofcandels)=>{
+  const tolerance = 0.0001
+  let cardsum = 0
+  let topAllGreenCounter = 0
+  let topAllRedCounter = 0
+  let favCount = 0
+
+    for(var i=0;i<globalArray.length;i++){
+      let countRed60=0,countRed30=0,countRed5 =0
+      let CountGreen60=0,CountGreen30=0,CountGreen5=0 
+      let spreadSum60=0,spreadSum30=0,spreadSum5 =0
+      let ampSum60=0,ampSum30=0,ampSum5=0
+      let spreadToAmpRatio60=0,spreadToAmpRatio30=0,spreadToAmpRatio5=0
+      let Scoring = 0
+      try{
+      globalArray[i].oneHourSpread = Number(clacSpread(globalArray[i].hourlyCandles[0].openPrice,globalArray[i].last60Candle[0].closePrice))
+      globalArray[i].fourHourSpread = Number(clacSpread(globalArray[i].hourlyCandles[3].openPrice,globalArray[i].last60Candle[0].closePrice))
+      globalArray[i].fiveMinuteSpread = Number(clacSpread(globalArray[i].fiveMinuteCandles[0].openPrice,globalArray[i].last60Candle[0].closePrice))
+      }catch(e){
+       continue 
+      }
+    for(var x=0;x<numberofcandels;x++){
+      //tail
+      spreadToAmpRatio60 = spreadToAmpRatio60 + Math.abs(globalArray[i].hourlyCandles[x].spreadToAmpRatio)
+      spreadToAmpRatio30 = spreadToAmpRatio30 + Math.abs(globalArray[i].halfHourlyCandles[x].spreadToAmpRatio)
+      spreadToAmpRatio5 = spreadToAmpRatio5 + Math.abs(globalArray[i].fiveMinuteCandles[x].spreadToAmpRatio)
+      //Spread
+      spreadSum60 = spreadSum60 + Math.abs(globalArray[i].hourlyCandles[x].spreadPercentage)
+      spreadSum30 = spreadSum30 + Math.abs(globalArray[i].halfHourlyCandles[x].spreadPercentage)
+      spreadSum5 = spreadSum5 + Math.abs(globalArray[i].fiveMinuteCandles[x].spreadPercentage)
+      //Amp
+      ampSum60 = ampSum60 + Math.abs(globalArray[i].hourlyCandles[x].amplitudePercentage)
+      ampSum30 = ampSum30 + Math.abs(globalArray[i].halfHourlyCandles[x].amplitudePercentage)
+      ampSum5 = ampSum5 + Math.abs(globalArray[i].fiveMinuteCandles[x].amplitudePercentage)
+      //Count Green
+      if(globalArray[i].hourlyCandles[x].spreadPercentage>tolerance){
+        CountGreen60++
+        if(globalArray[i].symbol==='TOMOUSDT'){console.log(CountGreen60)}
+      }
+      if(globalArray[i].halfHourlyCandles[x].spreadPercentage>tolerance){
+        CountGreen30++
+      }
+      if(globalArray[i].fiveMinuteCandles[x].spreadPercentage>tolerance){
+        CountGreen5++
+      }
+      //Count Red
+      if(globalArray[i].hourlyCandles[x].spreadPercentage<tolerance){
+        countRed60++
+      }
+      if(globalArray[i].halfHourlyCandles[x].spreadPercentage<tolerance){
+        countRed30++
+      }
+      if(globalArray[i].fiveMinuteCandles[x].spreadPercentage<tolerance){
+        countRed5++
+      }
+      
+
+    }
+    //tail 
+    globalArray[i].hourlyCandlesspreadToAmpRatio = spreadToAmpRatio60-numOfColum
+    globalArray[i].halfHourlyCandlesspreadToAmpRatio = spreadToAmpRatio30-numOfColum
+    globalArray[i].fiveMinuteCandlesspreadToAmpRatio = spreadToAmpRatio5-numOfColum
+    globalArray[i].AllspreadToAmpRatio = (spreadToAmpRatio60+spreadToAmpRatio30+spreadToAmpRatio5)-numOfColum*3
+          //Spread
+    globalArray[i].hourlyCandlesSpreadSum = spreadSum60
+    globalArray[i].halfHourlyCandlesSpreadSum = spreadSum30
+    globalArray[i].fiveMinuteCandlesSpreadSum = spreadSum5
+
+    globalArray[i].sumAllSpread = spreadSum60+spreadSum30+spreadSum5
+     //Amp
+     globalArray[i].hourlyCandlesAmpSum = ampSum60
+     globalArray[i].halfHourlyCandlesAmpSum = ampSum30
+     globalArray[i].fiveMinuteCandlesAmpSum = ampSum5
+     globalArray[i].sumAllAmp = ampSum60+ampSum30+ampSum5
+
+     //Count Red
+     globalArray[i].countRed60 = countRed60
+     globalArray[i].countRed30 = countRed30
+     globalArray[i].countRed5 = countRed5
+     globalArray[i].sumAllRed = countRed60+countRed30+countRed5
+     globalArray[i].topAllRed = 0
+     if(((countRed60+countRed30+countRed5)>=(numOfColum*3-3))&&((spreadSum60+spreadSum30+spreadSum5)/(numOfColum*3-3)>0.2)){
+      globalArray[i].topAllRed = spreadSum60+spreadSum30+spreadSum5
+      topAllRedCounter++
+     }
+     globalArray[i].top5MinRed = countRed5 + ampSum5
+     if(globalArray[i].top5MinRed>7){
+      
+     }
+     //Count Green
+     globalArray[i].countGreen60 = CountGreen60
+     globalArray[i].countGreen30 = CountGreen30
+     globalArray[i].countGreen5 = CountGreen5
+     globalArray[i].sumAllGreen = CountGreen60+CountGreen30+CountGreen5
+     globalArray[i].topAllGreen = 0
+     if(((CountGreen60+CountGreen30+CountGreen5)>=(numOfColum*3-3))&&((spreadSum60+spreadSum30+spreadSum5)/(numOfColum*3-3)>0.2)){
+      globalArray[i].topAllGreen = spreadSum60+spreadSum30+spreadSum5
+      topAllGreenCounter++
+     }
+
+          globalArray[i].top5MinGreen = CountGreen5 + ampSum5
+
+     //Socring
+
+     
+  }
+
+  const detectAbnormal = async()=>{
+    let cardCount = 0
+    let _3PercentAmp = 0
+    let _150XAvgVolume = false 
+    let _3GreenCandle = 0
+    let _5MinGreen = 0
+    let _5MinRed = 0
+    let _3consecutiveGreen = 0
+    let sumSpreadofLast10Candle = 0
+    let isItFav = false
+    for(let x = 0 ;x<globalArray.length;x++){
+       isItFav = false
+       cardCount = 0
+       _3PercentAmp = 0
+       _150XAvgVolume = false 
+       _3GreenCandle = 0
+       _5MinGreen = 0
+       _5MinRed = 0
+       _3consecutiveGreen = 0
+       sumSpreadofLast10Candle = 0
+       for(var t=0;t<favList.length;t++){
+        if(globalArray[x].symbol===favList[t]){
+          isItFav=true
+        }
+       }
+       for(let u=0;u<10;u++){
+        sumSpreadofLast10Candle = Math.abs(globalArray[x].last60Candle[u].spreadPercentage) + sumSpreadofLast10Candle
+        if(sumSpreadofLast10Candle>3){
+          cardCount++
+        }
+       }
+      for(let i = 0;i<60;i++){
+        if(isItFav&&globalArray[x].last60Candle[i].amplitudePercentage>=1){
+          if(globalArray[x].favCoin==0){
+            favCount++
+           }
+          globalArray[x].favCoin = 1
+         
+          console.log(globalArray[x].symbol)
+          console.log(favCount)
+        }
+        if(globalArray[x].last60Candle[i].amplitudePercentage>=3){
+          _3PercentAmp = globalArray[x].last60Candle[i].amplitudePercentage
+          cardCount++
+        }
+
+        if(globalArray[x].last60Candle[i].volume&&globalArray[x].last300VolumeSum>0&&globalArray[x].last60Candle[i].volume>(globalArray[x].last300VolumeSum/300)*150){
+          _150XAvgVolume = true
+          cardCount++
+        }
+
+        // doji candle in past 15 min doji => sprean/amp = 0.15
+        globalArray[x].dojiIn15Min = false
+        if(i<15){
+          if(globalArray[x].last60Candle[i].amplitudePercentage>=1&&(Math.abs(globalArray[x].last60Candle[i].spreadPercentage)/globalArray[x].last60Candle[i].amplitudePercentage)<=0.15){
+            globalArray[x].dojiIn15Min = true
+            cardCount++
+          }
+        }
+      }
+
+      for(let y=0;y<(120/5);y++){
+        if(globalArray[x].fiveMinuteCandles[y].spreadPercentage>=0.2){
+          _5MinGreen++
+        }else if(globalArray[x].fiveMinuteCandles[y].spreadPercentage<=-0.2){
+          _5MinRed++
+        } 
+
+      }
+      if(globalArray[x].fiveMinuteCandles[0].spreadPercentage>=0.2&&globalArray[x].fiveMinuteCandles[1].spreadPercentage>=0.2&&globalArray[x].fiveMinuteCandles[3].spreadPercentage>=0.2&&globalArray[x].fiveMinuteCandles[4].spreadPercentage>=0.2){
+        cardCount++
+        globalArray[x].threeConsecutiveGreen = true
+
+      }
+      if(globalArray[x].fiveMinuteCandles[0].spreadPercentage<=-0.2&&globalArray[x].fiveMinuteCandles[1].spreadPercentage<=-0.2&&globalArray[x].fiveMinuteCandles[3].spreadPercentage<=-0.2&&globalArray[x].fiveMinuteCandles[4].spreadPercentage<=-0.2){
+        cardCount++
+        globalArray[x].threeConsecutiveRed = true
+      }
+      
+
+
+      globalArray[x]._5MinRed = _5MinRed
+      globalArray[x]._5MinGreen = _5MinGreen
+      globalArray[x]._3PercentAmp = _3PercentAmp
+      globalArray[x]._150XAvgVolume = _150XAvgVolume
+      globalArray[x].cardCount = cardCount
+      globalArray[x].sumSpreadofLast10Candle = sumSpreadofLast10Candle
+
+      
+      //count card for all coins 
+      if(cardCount>0){
+        cardsum++
+      }
+      
+      globalArray[x].score = Number((globalArray[x].sumAllSpread + Math.abs(globalArray[x].sumAllGreen-globalArray[x].sumAllRed)/5 + globalArray[x].cardCount * 5 + globalArray[x].topAllRed + globalArray[x].topAllGreen).toFixed(2))
+    }
+  }
+  detectAbnormal()
+  replaceOriginalWithGlobal()
+  document.getElementsByClassName('cardCounter')[0].innerHTML = cardsum
+  document.getElementsByClassName('topAllRedCounter')[0].innerHTML = topAllRedCounter
+  document.getElementsByClassName('topAllGreenCounter')[0].innerHTML = topAllGreenCounter
+  document.getElementsByClassName('FaveCoinCounter')[0].innerHTML = favCount
+}
+/*
+function displayChart(id,TimeFrame){
+  document.getElementById(`tvchart${id}`).setAttribute("class",`showChart`)
+  document.getElementById(`${id}Button${TimeFrame}`).setAttribute("onclick",`hideChart('${id}',${TimeFrame})`)
+  document.getElementById(`tvchart${id}`).innerHTML=`<iframe src='temp.html?coin=${id}&TimeFrame=${TimeFrame}'></iframe>`
+}
+function coinAnalyz(coin,timeFrame,chartType,bars){
+
+  document.getElementById(`tvchart${coin}`).setAttribute("class",`showChart`)
+  //document.getElementById(`${coin}coinAnalyz`).setAttribute("onclick",`hideChart('${coin}',${timeFrame})`)
+  document.getElementById(`tvchart${coin}`).innerHTML=`<iframe src='test.html?coin=${coin}&timeFrame=${timeFrame}&chartType=${chartType}&bars=${bars}'></iframe>`
+}
+
+*/
+function displayChart(id,TimeFrame){
+  const chart = document.querySelector('.chart');
+const chartWidth = chart.offsetWidth;
+  document.getElementById(`tvchart${id}`).setAttribute("class",`showChart`)
+  document.getElementById(`${id}Button${TimeFrame}`).setAttribute("onclick",`hideChart('${id}',${TimeFrame})`)
+  document.getElementById(`tvchart${id}`).innerHTML=`<iframe scrolling="no" src='https://coincove.blogspot.com/p/customchart.html?coin=${id}&TimeFrame=${TimeFrame}&width=${chartWidth}'></iframe>`
+}
+function coinAnalyz(coin,timeFrame,chartType,bars){
+
+  document.getElementById(`tvchart${coin}`).setAttribute("class",`showChart`)
+  //document.getElementById(`${coin}coinAnalyz`).setAttribute("onclick",`hideChart('${coin}',${timeFrame})`)
+  document.getElementById(`tvchart${coin}`).innerHTML=`<iframe src='https://coincove.blogspot.com/p/test.html?coin=${coin}&timeFrame=${timeFrame}&chartType=${chartType}&bars=${bars}'></iframe>`
+}
+
+
+
+const replaceOriginalWithGlobal = async () => {
+  original = globalArray.slice()
+}
+function reloadPage() {
+  const reloadButton = document.getElementById('reload-button');
+  reloadButton.addEventListener('click', () => {
+    location.reload();
+  });
+}
+const clacSpread = (open,close)=>{
+  let spread = Math.abs(open-close)
+  return Number(spread/open *100).toFixed(2)
+}
+  </script>
+</body>
+</html>
