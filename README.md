@@ -1,70 +1,93 @@
-# Trading Scanner Report
+# Custom Crypto Trading Strategy Scanner
 
-**Try the Trading Scanner:**
-For those interested in exploring the trading scanner, you can access the demo [here](https://coincove.blogspot.com/p/static.html). This link provides a detailed overview and access to the scanner's features.
+**Demo Link:** [Try Demo](https://coincove.blogspot.com/p/static.html)
 
-## Skills Utilized
+## Overview
 
-**Hard Skills:**
-- **JavaScript:** Expertise in developing advanced trading tools and algorithms, leveraging its asynchronous capabilities for real-time data processing.
-- **Parallel Programming:** Applied parallel processing techniques to enhance the efficiency of data analysis and reduce computation time.
-- **Binance API:** Utilized Binance API for accessing real-time market data and integrating it into the trading scanner.
+This report describes a custom trading strategy scanner designed for cryptocurrency trading, with a particular focus on BUSD pairs. The scanner leverages a variety of techniques to identify trading opportunities based on patterns, market phases, and volatility metrics. It is optimized for quick market analysis and can be adapted to various trading strategies.
 
-**Soft Skills:**
-- **Analytical Thinking:** Demonstrated strong analytical abilities in discovering and implementing effective trading patterns.
-- **Creative Problem-Solving:** Applied creative data analysis and visualization techniques to turn complex data into actionable insights.
-- **Attention to Detail:** Ensured accuracy in data interpretation and implementation of trading strategies.
+## Skills and Technologies Used
 
-## Trading Scanner Overview
+### Hard Skills
+- **JavaScript:** Utilized for developing the trading scanner, leveraging its capabilities for both front-end and back-end functionalities.
+- **Parallel Programming:** Applied to handle multiple data streams efficiently.
+- **Binance API:** Used for real-time data retrieval and trading operations.
 
-**Project Description:**
-The trading scanner is a sophisticated tool designed for identifying trading opportunities in cryptocurrency markets, specifically focusing on BUSD pairs. The scanner operates based on predefined times, primarily the opening of 4-hour candles (7 times in 24 hours), with options to adjust to 1-hour and 5-minute candles under specific market conditions. The strategy involves:
+### Soft Skills
+- **Analytical Skills:** Applied to discover trading patterns and build a robust strategy.
+- **Data Analysis and Visualization:** Enabled the creation of insightful charts and metrics, turning raw data into actionable trading signals.
+- **Creativity:** Used to design a versatile and adaptive scanner that meets various trading needs.
 
-1. **Market Phase Identification:** Detecting when the market is in a distribution phase.
-2. **Consolidation Detection:** Identifying consolidation patterns where the price is at the bottom half of the consolidation range.
-3. **Pattern Recognition:** Looking for sequences of 4 consecutive green or red candles on hourly, 30-minute, and 5-minute charts to gauge market sentiment.
+## Features
 
-**Additional Features:**
-- **FOMO Strategy Integration:** Utilizes market FOMO to identify potential trading opportunities where the majority of traders are likely to open their positions.
-- **Volatility Measurement:** Measures market volatility and provides several metrics, including spread sum for specific time periods and anomaly detection. The use of color-coding for spread sums helps predict price movements (e.g., 5 green spreads suggest a higher probability of price increase).
-- **Custom Charts:** Displays how the market behaves in the first 3 candles of each hour and each 30-minute interval for the past 1000 minutes. Also compares BTC prices with the coin of interest, including spread, number of trades, and volume, to identify anomalies and understand the coin's movement relative to BTC.
-
-**Performance Insights:**
-- Initially, the scanner achieved a 15x balance increase before Binance delisted BUSD. Pairs with other stablecoins like USDT did not offer the same level of accuracy, potentially due to market manipulation or differences in resolution.
-- Includes a scoring system to evaluate potential trades:
-  \[
-  \text{Score} = \text{Number}\left( \text{globalArray}[x].\text{sumAllSpread} + \frac{|\text{globalArray}[x].\text{sumAllGreen} - \text{globalArray}[x].\text{sumAllRed}|}{5} + \text{globalArray}[x].\text{cardCount} \times 5 + \text{globalArray}[x].\text{topAllRed} + \text{globalArray}[x].\text{topAllGreen} \right)
-  \]
-  where a higher score indicates a higher probability of profitable trades.
-
-**Key Insight:**
-The scanner's effectiveness is highly dependent on the trader's experience. While the tool provides advanced metrics and insights, optimal results are achieved with skilled traders who can interpret and act on the data effectively.
+- **Pattern-Based Strategy:** Identifies trading opportunities based on predefined times, including the opening of 4-hour, 1-hour, and 5-minute candles. Trades are executed within less than a minute.
+- **Market Conditions:** Focuses on coins in the distribution phase, showing consolidation, and with prices at the bottom half of consolidation.
+- **Color-Coded Indicators:** Provides a quick market overview using color-coded indicators for easy identification of trends.
+- **FOMO Strategy:** Utilizes market FOMO to highlight opportunities where the majority of traders are likely to open their trades.
+- **Volatility Metrics:** Measures market volatility and provides several metrics, including spread sums and anomalies. Uses color coding to indicate potential price increases or decreases based on market spreads.
+- **Custom Charts:** Displays how the market behaves in the first three candles of each hour and the first three candles of 30-minute intervals for the past 1000 minutes. Compares coin prices with BTC prices to identify anomalies and potential market movements.
 
 ## Parameters Explanation
 
-- **Top All Green:** Displays the top coins currently increasing in price, ranging from 0 to the maximum number of coins.
-- **Top All Red:** Displays the top coins currently decreasing in price, ranging from 0 to the maximum number of coins.
-- **Fav Coins:** A predefined list of coins known for high winning rates using this indicator:
-  - `['LEVERUSDT','PHBUSDT','AMBUSDT','1000FLOKIUSDT','IDEXUSDT','KEYUSDT','DODOBUSD','TLMUSDT']`
+- **Top All Green:** Shows top coins currently increasing in price, ranging from 0 to the maximum number of coins.
+- **Top All Red:** Shows top coins currently decreasing in price, ranging from 0 to the maximum number of coins.
+- **Fav Coins:** A predefined list of coins used to show high winning rates with this indicator:
+  - `['LEVERUSDT', 'PHBUSDT', 'AMBUSDT', '1000FLOKIUSDT', 'IDEXUSDT', 'KEYUSDT', 'DODOBUSD', 'TLMUSDT']`
 - **Cards:** Displays coins showing anomalies and high volatility.
-- **Sum All Spread:** Sorts coins based on the sum of all spreads.
-- **Sum All Amp:** Sorts coins based on the sum of all amplitudes.
-- **Red and Green:** Sorts coins based on the number of red or green candles.
-- **Score:** A scoring system indicating the suitability of coins for scalping. Higher scores suggest better potential for scalping. Note that scores are not always accurate and require experienced traders.
-- **Time Frame Metrics:**
-  - **1-Hour, 30-Minute, and 5-Minute Time Frames:**
-    - **SpreadSum:** Absolute sum of all spreads in the time frame.
-    - **AmpSum:** Absolute sum of all amplitudes in the time frame.
-    - **Green Score:** Number of green candles.
-    - **Red Score:** Number of red candles.
-- **Global Metrics:**
-  - **Last 20 Minute SpreadSum:** Absolute sum of spreads over the last 20 minutes, showing volatility.
-  - **Last 300 Minute SpreadSum:** Absolute sum of spreads over the last 300 minutes, showing volatility.
-  - **4-Hour Spread:** Spread of the last 4-hour candle.
-  - **1-Hour Spread:** Spread of the last 1-hour candle.
-  - **5-Minute Spread:** Spread of the last 5-minute candle.
-  - **Top 5-Minute Red:** Sum of red candles at the opening of 5-minute intervals, with higher values indicating stronger downtrends.
-  - **Top 5-Minute Green:** Sum of green candles at the opening of 5-minute intervals, with higher values indicating stronger uptrends.
+- **Sum All Spread:** Sorts coins based on the total sum of all spreads.
+- **Sum All Amp:** Sorts coins based on the total sum of all amplitudes.
+- **Red and Green:** Sorts coins based on the number of green or red candles.
+- **Score:** A scoring system indicating the suitability of coins for scalping traders. Higher scores suggest higher profitability, but accuracy may vary and requires experienced traders.
 
-**Note:** Users can sort all coins based on any of these parameters by clicking on the respective column headers. This feature enhances flexibility in analyzing market data and finding trading opportunities.
+### Timeframe Metrics
+- **1-Hour Time Frame:**
+  - **SpreadSum:** Absolute sum of all spreads in the 1-hour timeframe.
+  - **AmpSum:** Absolute sum of all amplitudes in the 1-hour timeframe.
+  - **Green Score:** Number of green candles in the 1-hour timeframe.
+  - **Red Score:** Number of red candles in the 1-hour timeframe.
 
+- **30-Minute Time Frame:**
+  - **SpreadSum:** Absolute sum of all spreads in the 30-minute timeframe.
+  - **AmpSum:** Absolute sum of all amplitudes in the 30-minute timeframe.
+  - **Green Score:** Number of green candles in the 30-minute timeframe.
+  - **Red Score:** Number of red candles in the 30-minute timeframe.
+
+- **5-Minute Time Frame:**
+  - **SpreadSum:** Absolute sum of all spreads in the 5-minute timeframe.
+  - **AmpSum:** Absolute sum of all amplitudes in the 5-minute timeframe.
+  - **Green Score:** Number of green candles in the 5-minute timeframe.
+  - **Red Score:** Number of red candles in the 5-minute timeframe.
+
+### Global Metrics
+- **Last 20 Minute SpreadSum:** Absolute sum of spreads for the last 20 minutes, showing volatility in this period.
+- **Last 300 Minute SpreadSum:** Absolute sum of spreads for the last 300 minutes, showing volatility over a longer period.
+- **4-Hour Spread:** Spread of the last 4-hour candle.
+- **1-Hour Spread:** Spread of the last 1-hour candle.
+- **5-Minute Spread:** Spread of the last 5-minute candle.
+- **Top 5-Minute Red:** Sum of red-colored spreads at the opening of 5-minute candles. Higher values indicate stronger downtrends.
+- **Top 5-Minute Green:** Sum of green-colored spreads at the opening of 5-minute candles. Higher values indicate stronger uptrends.
+
+## Scoring System
+
+The scoring system is based on the following mathematical formula:
+
+\[ \text{Score} = \left( \text{sumAllSpread} + \frac{|\text{sumAllGreen} - \text{sumAllRed}|}{5} + \text{cardCount} \times 5 + \text{topAllRed} + \text{topAllGreen} \right) \]
+
+Where:
+- \(\text{sumAllSpread}\) is the total sum of all spreads.
+- \(\text{sumAllGreen}\) is the sum of all green candle spreads.
+- \(\text{sumAllRed}\) is the sum of all red candle spreads.
+- \(\text{cardCount}\) is the count of cards.
+- \(\text{topAllRed}\) is the top red spread value.
+- \(\text{topAllGreen}\) is the top green spread value.
+
+Coins with a higher score indicate a higher probability of being profitable for scalping, especially when evaluated by experienced traders.
+
+## Note
+Users can sort all coins based on any of the parameters listed above by clicking on the respective parameter headers.
+
+## Conclusion
+
+This custom trading strategy scanner is designed to offer a comprehensive tool for identifying trading opportunities in the crypto market. With its flexible and adaptable approach, it can provide valuable insights and assist traders in making informed decisions.
+
+For any additional information or to try out the demo, visit the provided [demo link](https://coincove.blogspot.com/p/static.html).
