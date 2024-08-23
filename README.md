@@ -2,6 +2,19 @@
 
 **Demo Link:** [Try Demo](https://coincove.blogspot.com/p/static.html)
 
+## Shortcuts
+- [Overview](#overview)
+- [Skills and Technologies Used](#skills-and-technologies-used)
+- [Features](#features)
+- [Parameters Explanation](#parameters-explanation)
+- [Timeframe Metrics](#timeframe-metrics)
+- [Global Metrics](#global-metrics)
+- [Scoring System](#scoring-system)
+- [Note](#note)
+- [Conclusion](#conclusion)
+- [Contact](#contact)
+
+
 ## Overview
 
 This report describes a custom trading strategy scanner designed for cryptocurrency trading, with a particular focus on BUSD pairs. The scanner leverages a variety of techniques to identify trading opportunities based on patterns, market phases, and volatility metrics. It is optimized for quick market analysis and can be adapted to various trading strategies.
@@ -93,3 +106,8 @@ Users can sort all coins based on any of the parameters listed above by clicking
 This custom trading strategy scanner is designed to offer a comprehensive tool for identifying trading opportunities in the crypto market. With its flexible and adaptive approach, it can provide valuable insights and assist traders in making informed decisions.
 
 For any additional information or to try out the demo, visit the provided [demo link](https://coincove.blogspot.com/p/static.html).
+
+## Contact
+
+For further inquiries, please email [ahmedatia456123@gmail.com](mailto:ahmedatia456123@gmail.com).
+
